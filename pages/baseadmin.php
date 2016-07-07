@@ -1,40 +1,47 @@
 <?php
-function declareusermgmt(){
- global $pdo;
- $user_stmt = $pdo->query("SELECT * FROM members");
- $rows = $user_stmt->fetchAll(PDO::FETCH_BOTH);
- $types = [
-    ["Non enabled user", "0"],
-    ["Superadmin", "1"],
-    ["Admin", "2"],
-    ["Common user", "3"],
+
+function declareusermgmt()
+{
+    global $pdo;
+    $user_stmt = $pdo->query('SELECT * FROM members');
+    $rows = $user_stmt->fetchAll(PDO::FETCH_BOTH);
+    $types = [
+    ['Non enabled user', '0'],
+    ['Superadmin', '1'],
+    ['Admin', '2'],
+    ['Common user', '3'],
 ];
- while ($row = array_shift($rows)) {
-  if($_SESSION["usertype"] == 1 || (($row["usertype"] > $_SESSION["usertype"] || $row["usertype"] == "0") && $row["sid"] == $_SESSION["sid"])){
+    while ($row = array_shift($rows)) {
+        if ($_SESSION['usertype'] == 1 || (($row['usertype'] > $_SESSION['usertype'] || $row['usertype'] == '0') && $row['sid'] == $_SESSION['sid'])) {
+            if ($row['verifyemail'] == 1) {
+                $vemail = 'yes';
+            } else {
+                $vemail = 'no';
+            }
 
-   if($row['verifyemail'] == 1) { $vemail = "yes"; } else { $vemail = "no"; };
-
-   foreach($types as list($text, $ut)){
-    if($_SESSION["usertype"] == 1 || ($ut > $_SESSION["usertype"] || $ut == "0")){
-
-     if($ut == $row["usertype"]) { $sel = "selected"; } else { $sel = ""; };
-     $options = "$options
+            foreach ($types as list($text, $ut)) {
+                if ($_SESSION['usertype'] == 1 || ($ut > $_SESSION['usertype'] || $ut == '0')) {
+                    if ($ut == $row['usertype']) {
+                        $sel = 'selected';
+                    } else {
+                        $sel = '';
+                    }
+                    $options = "$options
                                             <option value=\"$ut\" $sel>$text</option>
 ";
-    };
-
-   };
-   $tr = "
+                }
+            }
+            $tr = "
 $tr
                                 <tr>
-                                    <th>".$row['id']."</th>
-                                    <th>".$row['username']."</th>
-                                    <th>".$row['name']."</th>
-                                    <th>".$row['sid']."</th>
-                                    <th>".$row['email']."</th>
-                                    <th>".$vemail."</th>
+                                    <th>".$row['id'].'</th>
+                                    <th>'.$row['username'].'</th>
+                                    <th>'.$row['name'].'</th>
+                                    <th>'.$row['sid'].'</th>
+                                    <th>'.$row['email'].'</th>
+                                    <th>'.$vemail.'</th>
                                     <th>
-                                        <select id=\"".$row['id']."type\" onChange=\"changeusertype('".$row['id']."')\">
+                                        <select id="'.$row['id']."type\" onChange=\"changeusertype('".$row['id']."')\">
 ".$options."
                                         </select>
                                     </th>
@@ -42,10 +49,10 @@ $tr
                                     <th><input class=\"form-control\" type=\"password\" name=\"newname\" id=\"".$row['id']."pass\" Placeholder=\"New password\" onChange=\"changeuserpass('".$row['id']."')\"><input class=\"btn\" type=\"button\" value=\"go\"></th>
                                 </tr>
 ";
-  $options = "";
-  };
- };
- echo "
+            $options = '';
+        }
+    }
+    echo "
         <div class=\"row\">
             <div class=\"box\">
                 <div class=\"col-lg-12\">
@@ -79,6 +86,4 @@ $tr
             </div>
         </div>
 ";
-
-};
-?>
+}

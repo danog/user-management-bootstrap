@@ -1,41 +1,45 @@
 <?php
-function declarenone() {
- global $pdo;
- global $error;
- global $pages;
 
- if($_SESSION['usertype'] == "0"){
-  $text = "When your structure admin enables you, you will be able to do lots of intresting things on this website!";
- } else {
-  $text = "ACTIONS:<br>";
-  foreach ($pages as list($name, $page)) {
-   if($page != "none") {
-    $text = "$text<a href=\"https://controllo.autocontrollo.ch/?p=$page\">$name</a><br>";
-   };
-  };
- };
- if($error == "y") { $errortxt = "<b>You have requested an invalid page. Please contact your structure admin.<br><br></b>"; };
+function declarenone()
+{
+    global $pdo;
+    global $error;
+    global $pages;
 
- $u = 0;
+    if ($_SESSION['usertype'] == '0') {
+        $text = 'When your structure admin enables you, you will be able to do lots of intresting things on this website!';
+    } else {
+        $text = 'ACTIONS:<br>';
+        foreach ($pages as list($name, $page)) {
+            if ($page != 'none') {
+                $text = "$text<a href=\"https://controllo.autocontrollo.ch/?p=$page\">$name</a><br>";
+            }
+        }
+    }
+    if ($error == 'y') {
+        $errortxt = '<b>You have requested an invalid page. Please contact your structure admin.<br><br></b>';
+    }
+
+    $u = 0;
 
  // Prepare pdo
- $online = $pdo->prepare("SELECT loggedin FROM members WHERE sid = ?;");
- 
- // Exec
- $online->execute(array($_SESSION['sid']));
- $rows = $online->fetchAll(PDO::FETCH_BOTH);
+ $online = $pdo->prepare('SELECT loggedin FROM members WHERE sid = ?;');
 
- while ($row = array_shift($rows)) {
-  $u = $u + $row["loggedin"];
- };
- if($u == "1"){
-  $u = "Currently there&apos;s 1 user online.";
- } elseif($u == ""){
-  $u = "Currently there are 0 users online.";
- } else {
-  $u = "Currently there are $u users online.";
- };
- echo '
+ // Exec
+ $online->execute([$_SESSION['sid']]);
+    $rows = $online->fetchAll(PDO::FETCH_BOTH);
+
+    while ($row = array_shift($rows)) {
+        $u = $u + $row['loggedin'];
+    }
+    if ($u == '1') {
+        $u = 'Currently there&apos;s 1 user online.';
+    } elseif ($u == '') {
+        $u = 'Currently there are 0 users online.';
+    } else {
+        $u = "Currently there are $u users online.";
+    }
+    echo '
     <div class="container">
 
         <div class="row">
@@ -53,27 +57,27 @@ function declarenone() {
         </div>
     </div>
 ';
-};
-function declareuser() {
-
-  if ($st = $pdo->prepare("SELECT regolamento FROM members WHERE username=?")) {    
-    $st->bind_param('s', $curuser); 
+}
+function declareuser()
+{
+    if ($st = $pdo->prepare('SELECT regolamento FROM members WHERE username=?')) {
+        $st->bind_param('s', $curuser);
     // Esegui la query ottenuta.
     $st->execute();
-    $st->bind_result($regol);
-    $st->fetch();
-  };
-  error_log("regol for $curuser is $regol", 0);
-  if($regol == "0") {
-   $top = "$itop";
-   $desc = "$idesc";
-   $section = "$isection";
-  } else {
-   $top = "$normtop";
-   $desc = "$normdesc";
-   $section = "$normsection";
-  };
-  echo '
+        $st->bind_result($regol);
+        $st->fetch();
+    }
+    error_log("regol for $curuser is $regol", 0);
+    if ($regol == '0') {
+        $top = "$itop";
+        $desc = "$idesc";
+        $section = "$isection";
+    } else {
+        $top = "$normtop";
+        $desc = "$normdesc";
+        $section = "$normsection";
+    }
+    echo '
     <STYLE TYPE="text/css">
     <!--
     	@page { margin-left: 0.79in; margin-right: 0.79in; margin-top: 0.98in; margin-bottom: 0.79in }
@@ -163,7 +167,4 @@ function printDiv(divName) {
      document.body.innerHTML = originalContents;
 }
     </script>';
-
-};
-
-?>
+}

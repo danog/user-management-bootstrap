@@ -3,7 +3,7 @@
 /*
   $space = "                                ";
   $fs = "    ";
-  $tds = array("del", "passchange", "liberatoria", "corso", "email", "nome", "datadinascita", "luogodinascita", "residenza", "via", "cap", "n", "numero", "cf", "data", "printlib", "printiscr"); 
+  $tds = array("del", "passchange", "liberatoria", "corso", "email", "nome", "datadinascita", "luogodinascita", "residenza", "via", "cap", "n", "numero", "cf", "data", "printlib", "printiscr");
 
 
   $th = "$space$fs$fs<th><b>Nome utente</b></th>\n";
@@ -52,7 +52,7 @@
    $printiscr = "";
    $u = $row['loggedin'] + $u;
    if($row['regolamento'] == "1") {
-    
+
     $regolamento = "&#x2713;";
     $nome = $row['name'];
     $email = $row['email'];
@@ -183,5 +183,4 @@ $space<tbody>
     </section>
 
 ';
-*/
-?>
+*/;

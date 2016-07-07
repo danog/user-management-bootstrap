@@ -7,4 +7,3 @@ include 'pages/baseindex.php';
 include 'pages/basesignup.php';
 include 'pages/baseusers.php';
 include 'pages/baseadmin.php';
-?>
