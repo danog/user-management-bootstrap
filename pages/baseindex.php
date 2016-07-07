@@ -1,13 +1,14 @@
 <?php
 
-function declareindex($array) {
- $username = $_SESSION['username'];
- 
- foreach ($array as $menu) {
-  $list = "$list<a href=\"https://controllo.autocontrollo.ch/?p=$menu\">$menu</a><br>";
- };
+function declareindex($array)
+{
+    $username = $_SESSION['username'];
 
- $content = '
+    foreach ($array as $menu) {
+        $list = "$list<a href=\"https://controllo.autocontrollo.ch/?p=$menu\">$menu</a><br>";
+    }
+
+    $content = '
     <div class="container">
 
         <div class="row">
@@ -26,6 +27,5 @@ function declareindex($array) {
 
     </div>
  ';
- echo $content;
-};
-?>
+    echo $content;
+}

@@ -1,7 +1,8 @@
 <?php
-function declarenavbase() {
- 
- $nav = '
+
+function declarenavbase()
+{
+    $nav = '
 <body>
 
     <div class="brand">Dido System</div>
@@ -40,23 +41,24 @@ function declarenavbase() {
         <!-- /.container -->
     </nav>
 ';
- echo $nav;
+    echo $nav;
 }
-function declarenav($array) {
- $username = $_SESSION['username'];
+function declarenav($array)
+{
+    $username = $_SESSION['username'];
 
- foreach ($array as list($name, $page)) {
-  if($page != "none") {
-   $navbar = "
+    foreach ($array as list($name, $page)) {
+        if ($page != 'none') {
+            $navbar = "
 $navbar
                     <li>
                         <a href=\"https://controllo.autocontrollo.ch/?p=$page\">$name</a>
                     </li>
 ";
-  };
- };
+        }
+    }
 
- $nav = '
+    $nav = '
 <body>
     <div class="brand">Dido System</div>
     <div class="address-bar">999 Campo Marzio | BELLINZONA, TI 6500, SWITZERLAND | Tél: +41 (0)78 848-92-94 | Fax: (887) 123-4567</div>
@@ -98,6 +100,5 @@ $navbar
     </nav>
  ';
 
- echo $nav;
+    echo $nav;
 }
-?>

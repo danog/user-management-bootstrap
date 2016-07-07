@@ -1,13 +1,13 @@
 <?php
 
-function declaresignup() {
-
- if(isset($_GET['error'])) { 
-  $error = '
+function declaresignup()
+{
+    if (isset($_GET['error'])) {
+        $error = '
                     <h2 class="text-center">AN ERROR OCCURRED: PLEASE CHECK YOUR LOGIN CREDENTIALS AND TRY AGAIN.</h2>
 ';
- };
- $content = '
+    }
+    $content = '
     <div class="container">
         <div class="row">
             <div class="box">
@@ -106,6 +106,5 @@ function declaresignup() {
 
     </div>';
 
- echo $content;
-};
-?>
+    echo $content;
+}

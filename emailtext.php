@@ -1,5 +1,6 @@
 <?php
-$usversubject = "Email verification for autocontrollo.ch";
+
+$usversubject = 'Email verification for autocontrollo.ch';
 $usverbody = "Hello $username!
 You just signed up to autocontrollo.ch with this email: you should verify it so that we know that you're not a bot.
 To do that, simply click on the following url or copy and paste it in your address bar:
@@ -29,5 +30,3 @@ Bye!
 ";
 $adverhttpbody = "Hello $adminusername!<br>$name ($username) just signed up to autocontrollo.ch using your structure&apos;s id.<br>Please navigate to controllo.autocontrollo.ch and activate the user.<br>If you don&apos;t know this $username, you should delete him/her from the user list.<br>Bye!
 ";
-
-?>

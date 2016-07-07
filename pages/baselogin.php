@@ -1,12 +1,13 @@
 <?php
-function declarelogin() {
 
- if(isset($_GET['error'])) { 
-  $error = '
+function declarelogin()
+{
+    if (isset($_GET['error'])) {
+        $error = '
                     <h2 class="text-center">AN ERROR OCCURRED: PLEASE CHECK YOUR LOGIN CREDENTIALS AND TRY AGAIN.</h2>
 ';
- };
- $content = '
+    }
+    $content = '
     <div class="container">
 
         <div class="row">
@@ -44,6 +45,5 @@ function declarelogin() {
         </div>
     </div>';
 
- echo $content;
-};
-?>
+    echo $content;
+}
